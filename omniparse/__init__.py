@@ -62,27 +62,18 @@ def load_omnimodel(engine:str, load_documents: bool, load_media: bool, load_web:
             )
     if "mineru" == engine:
         print("[LOG] ✅ use mineru as pdf parse engine")
-        home_dir = os.path.expanduser("~")
-        model_dir = os.path.join(home_dir, ".cache/modelscope/hub/opendatalab/PDF-Extract-Kit/models")
-        json_file = os.path.join(model_dir, "magic-pdf.json")
-        if not os.path.exists(model_dir) or not os.path.exists(json_file):
-            # 下载脚本的 URL
-            script_url = "https://raw.githubusercontent.com/opendatalab/MinerU/master/docs/download_models.py"
-            script_file = "download_models.py"
-
+        # 下载脚本的 URL
+        script_url = "https://raw.githubusercontent.com/opendatalab/MinerU/master/docs/download_models.py"
+        script_file = "download_models.py"
+        if not os.path.exists(script_file):
             # 下载脚本
             print("downloading download_models.py...")
             urllib.request.urlretrieve(script_url, script_file)
             print("download_models.py downloaded")
 
-            # 执行下载脚本
-            print("executing download_models.py...")
-            subprocess.run(["python", script_file], check=True)
-            print("downloaded model PDF-Extract-Kit ")
-        else:
-            print("model PDF-Extract-Kit is existed")
-        print(f"model path: {home_dir}/{model_dir}")
-        print(f"model config path : {home_dir}/{json_file}")
+        # 执行下载脚本
+        print("executing download_models.py...")
+        subprocess.run(["python", script_file], check=True)
     if "marker" != engine and "mineru" != engine:
         raise ValueError("Unsupported engine，only support marker or mineru")
 

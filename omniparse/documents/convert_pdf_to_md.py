@@ -147,9 +147,11 @@ def parse_pdf(
     model_state: Any = None
 ) -> Tuple[str, Dict[str, Image.Image], Dict]:
     if engine == "mineru":
+     print("use mineru as pdf parse engine call convert_single_pdf_by_mineru")
      return  convert_single_pdf_by_mineru(pdf_path, output_dir=output_dir)
     elif engine == "marker":
-     return  convert_single_pdf(pdf_path,model_state.model_list)
+        print("use marker as pdf parse engine call convert_single_pdf")
+        return  convert_single_pdf(pdf_path,model_state.model_list)
 # 测试
 if __name__ == '__main__':
     pdf_path = r"C:\Users\XYTK2\Desktop\2024-2016-gb-cd-300.pdf"

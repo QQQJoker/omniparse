@@ -31,7 +31,7 @@ from omniparse import get_shared_state
 from marker.convert import convert_single_pdf
 from omniparse.utils import encode_images
 from omniparse.models import responseDocument
-from convert_pdf_to_md import parse_pdf
+from omniparse.documents.convert_pdf_to_md import parse_pdf
 
 document_router = APIRouter()
 model_state = get_shared_state()
