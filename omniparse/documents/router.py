@@ -31,6 +31,7 @@ from omniparse import get_shared_state
 from marker.convert import convert_single_pdf
 from omniparse.utils import encode_images
 from omniparse.models import responseDocument
+from convert_pdf_to_md import parse_pdf
 
 document_router = APIRouter()
 model_state = get_shared_state()
@@ -164,7 +165,7 @@ async def parse_any_endpoint(file: UploadFile = File(...)):
         input_path = output_pdf_path
 
     # Common parsing logic
-    full_text, images, out_meta = convert_single_pdf(input_path, model_state.model_list)
+    full_text, images, out_meta = parse_pdf(input_path,model_state.model_list, engine=model_state.engine)
 
     os.remove(input_path)
 
