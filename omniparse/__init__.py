@@ -46,9 +46,10 @@ def load_omnimodel(engine:str, load_documents: bool, load_media: bool, load_web:
     global shared_state
     print_omniparse_text_art()
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    shared_state.engine = engine
     if "marker" == engine:
         print("[LOG] ✅ use marker as pdf parse engine")
-        shared_state.engine = engine
+
         if load_documents:
             print("[LOG] ✅ Loading OCR Model")
             shared_state.model_list = load_all_models()

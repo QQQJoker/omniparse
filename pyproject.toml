@@ -49,7 +49,10 @@ gradio = "^4.37.1"
 nltk = "^3.8.1"
 marker-pdf = "^0.2.16"
 magic-pdf = "^0.8.1"
-modelscope = "^1.19.0"
+magic-pdf = { version = "^0.8.1", extras = ["full"], source = "myhloli" }
+
+[tool.poetry.sources]
+myhloli = { url = "https://wheels.myhloli.com", secondary = true }
 
 [tool.poetry.scripts]
 omniparse = "server:main"
