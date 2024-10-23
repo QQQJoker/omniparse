@@ -90,7 +90,12 @@ def convert_single_pdf_by_mineru(
             model_json = json.loads(open(model_json_path, "r", encoding="utf-8").read())
         else:
             model_json = []
-
+        print(f"pdf_path = {pdf_path}")
+        print(f"pdf_name = {pdf_name}")
+        print(f"pdf_path_parent = {pdf_path_parent}")
+        print(f"output_path = {output_path}")
+        print(f"output_image_path = {output_image_path}")
+        print(f"image_path_parent = {image_path_parent}")
         # 执行解析步骤
         # image_writer = DiskReaderWriter(output_image_path)
         image_writer, md_writer = DiskReaderWriter(output_image_path), DiskReaderWriter(output_path)
@@ -128,7 +133,7 @@ def convert_single_pdf_by_mineru(
         md_content = pipe.pipe_mk_markdown(image_path_parent, drop_mode="none")
 
         #将output_image_path这个路径下的所有图片都保存到doc_images中以文件名为键，图片对象为值
-        doc_images = {os.path.basename(i): Image.open(i) for i in os.listdir(output_image_path)}
+        doc_images = {os.path.basename(i): Image.open(os.path.join(output_image_path, i)) for i in os.listdir(output_image_path)}
 
         if is_json_md_dump:
             json_md_dump(pipe, md_writer, pdf_name, content_list, md_content)

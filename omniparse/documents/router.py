@@ -133,7 +133,7 @@ async def parse_doc_endpoint(file: UploadFile = File(...)):
 async def parse_any_endpoint(file: UploadFile = File(...)):
     allowed_extensions = {".pdf", ".ppt", ".pptx", ".doc", ".docx"}
     file_ext = os.path.splitext(file.filename)[1]
-
+    print("file name =",file.filename)
     if file_ext.lower() not in allowed_extensions:
         return JSONResponse(
             content={
@@ -163,6 +163,12 @@ async def parse_any_endpoint(file: UploadFile = File(...)):
             output_dir, os.path.splitext(os.path.basename(input_path))[0] + ".pdf"
         )
         input_path = output_pdf_path
+
+    # 重命名文件，确保其后缀为 .pdf
+    if not input_path.lower().endswith('.pdf'):
+        new_input_path = input_path + '.pdf'
+        os.rename(input_path, new_input_path)
+        input_path = new_input_path
 
     # Common parsing logic
     full_text, images, out_meta = parse_pdf(input_path,model_state.model_list, engine=model_state.engine)

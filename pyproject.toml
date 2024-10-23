@@ -48,11 +48,13 @@ art = "^6.2"
 gradio = "^4.37.1"
 nltk = "^3.8.1"
 marker-pdf = "^0.2.16"
-magic-pdf = "^0.8.1"
-magic-pdf = { version = "^0.8.1", extras = ["full"], source = "myhloli" }
 
-[tool.poetry.sources]
-myhloli = { url = "https://wheels.myhloli.com", secondary = true }
+#magic-pdf = { version = "^0.8.1", extras = ["full"], source = "myhloli" }
+
+#[[tool.poetry.source]]
+#name = "myhloli"
+#url = "https://wheels.myhloli.com"
+#priority = "primary"
 
 [tool.poetry.scripts]
 omniparse = "server:main"
