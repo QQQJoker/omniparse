@@ -24,7 +24,7 @@ from transformers import AutoProcessor, AutoModelForCausalLM
 import whisper
 from omniparse.utils import print_omniparse_text_art
 from omniparse.web.web_crawler import WebCrawler
-from marker.models import load_all_models
+
 # from omniparse.documents.models import load_all_models
 import os
 import subprocess
@@ -49,7 +49,7 @@ def load_omnimodel(engine:str, load_documents: bool, load_media: bool, load_web:
     shared_state.engine = engine
     if "marker" == engine:
         print("[LOG] ✅ use marker as pdf parse engine")
-
+        from marker.models import load_all_models
         if load_documents:
             print("[LOG] ✅ Loading OCR Model")
             shared_state.model_list = load_all_models()
